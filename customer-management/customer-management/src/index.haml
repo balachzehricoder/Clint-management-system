@@ -1,0 +1,127 @@
+%form.form-address#address
+
+  .container.mt-5.mb-5
+
+    .row.mt-5.mb-5
+      %h2.col Create new customer
+      .col.text-right
+        %button.btn.btn-primary{:type => "submit"} Save
+
+    .row
+      .form-group.col-12.col-md-6
+        %label First name 
+        %small.text-muted.float-right *Required
+        %input.form-control{ :placeholder => "Enter first name"}/
+      .form-group.col-12.col-md-6
+        %label Last name
+        %small.text-muted.float-right *Required
+        %input.form-control{:placeholder => "Enter last name"}/
+
+    .row
+      .form-group.col-12.col-md-6.has-warning
+        %label Email address 
+        %small.text-muted.float-right *Required
+        %input.form-control.form-control-warning{:placeholder => "Enter email address", :type => "email"}/
+        .form-control-feedback Email delivery failed /  Please enter email address
+      .form-group.col-12.col-md-6
+        %label Mobile number
+        %small.text-muted.float-right *Required
+        %input.form-control{:placeholder => "0404 000 000", :type => "tel"}/
+
+    .row
+      .form-group.col-12.col-md-6
+        %label Card number 
+        %input.form-control{:placeholder => "Enter or scan loyalty card", :type => "number", :min => "1"}/
+      .form-group.col
+        %label Birthday
+        %input.form-control{:placeholder => "0404 000 000", :type => "date", :min => "1900-01-01", :max => "2017-06-20"}/
+
+    .row
+      .form-group.col#locationField
+        %label Contact address
+        %input#autocomplete.form-control{:placeholder => "Enter contact address", :onFocus => "geolocate()" }
+
+    .row
+      %label.col-12 Permission to contact
+      .form-group.col
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description Email
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description SMS
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description Phone call (between 9-5 only)
+
+    .row
+      %label.col-12 Opt-in communication
+      .form-group.col
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description Marketing newsletters
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description Order status or account updates
+        %label.custom-control.custom-checkbox
+          %input.custom-control-input{:type => "checkbox"}/
+          %span.custom-control-indicator
+          %span.custom-control-description Loyalty account updates
+
+    .row#duplicate
+      .col-12.card
+        .card-block
+          %a.btn.btn-secondary.float-right Dismiss
+          %h5 Duplicate entry detected
+          Existing customer(s) with similar contact details:
+          .row
+            .col-6.col-md-4
+              .card.card-block
+                %p
+                  %i.material-icons
+                    person
+                  Firstname Lastname 
+                %p
+                  %i.material-icons 
+                    email
+                  Email address 
+                %p
+                  %i.material-icons 
+                    phone
+                  Mobile number
+                %a.btn.btn-secondary.float-right View details
+            .col-6.col-md-4
+              .card.card-block
+                %p
+                  %i.material-icons 
+                    person
+                  Firstname Lastname 
+                %p
+                  %i.material-icons 
+                    email
+                  Email address 
+                %p
+                  %i.material-icons 
+                    phone
+                  Mobile number
+                %a.btn.btn-secondary.float-right View details
+            .col-6.col-md-4
+              .card.card-block
+                %p
+                  %i.material-icons 
+                    person
+                  Firstname Lastname 
+                %p
+                  %i.material-icons 
+                    email
+                  Email address 
+                %p
+                  %i.material-icons 
+                    phone
+                  Mobile number
+                %a.btn.btn-secondary.float-right View details

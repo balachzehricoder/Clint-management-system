@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Customer management</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<form class='form-address' id='address' method="POST" action="upload.php" enctype="multipart/form-data">
+  <div class='container mt-5 mb-5'>
+    <div class='row mt-5 mb-5'>
+      <h2 class='col'>Create new customer</h2>
+      <div class='col text-right'>
+        <button class='btn btn-primary' type='submit'>Save</button>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='form-group col-12 col-md-6'>
+        <label>First name</label>
+        <small class='text-muted float-right'>*Required</small>
+        <input class='form-control' name="first_name" placeholder='Enter first name' required>
+      </div>
+      <div class='form-group col-12 col-md-6'>
+        <label>Last name</label>
+        <small class='text-muted float-right'>*Required</small>
+        <input class='form-control' name="last_name" placeholder='Enter last name' required>
+        
+      </div>
+    </div>
+    <div class='row'>
+      <div class='form-group col-12 col-md-6'>
+        <label>Email address</label>
+        <small class='text-muted float-right'>*Required</small>
+        <input class='form-control' name="email" placeholder='Enter email address' type='email' required>
+      </div>
+      <div class='form-group col-12 col-md-6'>
+        <label>Mobile number</label>
+        <small class='text-muted float-right'>*Required</small>
+        <input class='form-control' name="mobile" placeholder='0404 000 000' type='tel' required>
+      </div>
+    </div>
+    <div class='form-group col-12 col-md-6'>
+      <label>servises</label>
+      <small class='text-muted float-right'>*Required</small>
+      <input class='form-control' name="servises" placeholder='servises' required>
+      
+    </div>
+    <div class='row'>
+      <div class='form-group col' id='locationField'>
+        <label>Upload contact file (Image, PDF, or DOC)</label>
+        <input type='file' class='form-control' name='contact_image' id='fileInput' accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif" required>
+        <div id='filePreview'>
+          <img id='imagePreview' style='max-width: 100%; height: auto; display: none;' />
+          <p id="fileName" style="display: none;"></p> <!-- For showing file name if it's not an image -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Script for previewing the image or showing the file name -->
+    <script>
+      document.getElementById('fileInput').addEventListener('change', function(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const imagePreview = document.getElementById('imagePreview');
+        const fileName = document.getElementById('fileName');
+    
+        // Reset any previous preview or file name display
+        imagePreview.style.display = 'none';
+        fileName.style.display = 'none';
+    
+        if (file) {
+          const fileType = file.type;
+    
+          // Check if the file is an image
+          if (fileType.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              imagePreview.src = e.target.result;
+              imagePreview.style.display = 'block'; // Show image preview
+            }
+            reader.readAsDataURL(file); // Read the image as a data URL
+          } else if (fileType === 'application/pdf' || fileType === 'application/msword' || 
+                     fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+            fileName.textContent = `Uploaded file: ${file.name}`; // Display file name
+            fileName.style.display = 'block'; // Show the file name
+          } else {
+            alert("Please upload only image files, PDFs, or DOC files.");
+            fileInput.value = ''; // Clear the file input if it's an invalid type
+          }
+        }
+      });
+    </script>
+  </div>    
+</form>
+
+<!-- partial -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places&amp;key=AIzaSyCWP3ijm_uYZjIR9fnjRIj2fH5buuY142o&amp;location=-37.82854,144.99087&amp;radius=10000'></script><script  src="./script.js"></script>
+
+</body>
+</html>
